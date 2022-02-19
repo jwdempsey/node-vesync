@@ -78,8 +78,18 @@ module.exports = class VesyncClient {
   }
 
   getDeviceDetails(device) {
+    let url = "";
+    if (device.deviceType === "ESL100" || device.deviceType === "ESL100CW") {
+      url = "/SmartBulb/v1/device/devicedetail";
+    } else if (
+      device.deviceType === "ESWL01" ||
+      device.deviceType === "ESWL03"
+    ) {
+      url = "/inwallswitch/v1/device/devicedetail";
+    }
+
     return this.client
-      .post("/SmartBulb/v1/device/devicedetail", {
+      .post(url, {
         uuid: device.uuid,
       })
       .then((response) => {
