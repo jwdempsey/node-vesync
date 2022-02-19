@@ -77,6 +77,22 @@ module.exports = class VesyncClient {
       });
   }
 
+  getDeviceDetails(device) {
+    return this.client
+      .post("/SmartBulb/v1/device/devicedetail", {
+        uuid: device.uuid,
+      })
+      .then((response) => {
+        if (response && response.data) {
+          return response.data;
+        }
+        return;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   getDevices() {
     return this.client
       .post("/cloud/v1/deviceManaged/devices", {
