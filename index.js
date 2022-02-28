@@ -68,12 +68,11 @@ module.exports = class VesyncClient {
         if (response && response.data && response.data.result) {
           this.token = response.data.result.token;
           this.accountId = response.data.result.accountID;
+        } else {
+          throw new Exception(
+            "Login failed, please check your email and password and try again"
+          );
         }
-      })
-      .catch(() => {
-        console.error(
-          "Login failed, please check your email and password and try again"
-        );
       });
   }
 
