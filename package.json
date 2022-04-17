@@ -3,6 +3,10 @@
   "version": "1.0.2",
   "description": "An unofficial library to control Vesync devices",
   "main": "index.js",
+  "scripts": {
+    "preversion": "npm install",
+    "postversion": "git push origin master --follow-tags && npm publish"
+  },
   "keywords": [
     "vesync",
     "api"
